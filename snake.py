@@ -8,7 +8,6 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 dt = 0
-snake_image = pygame.image.load("snake.png")
 apple_x = random.randint(10, screen.get_width())
 apple_y = random.randint(10, screen.get_height())
 score = 0
@@ -28,7 +27,9 @@ while running:
     screen.fill("black")
 
     pygame.draw.circle(screen, "red", apple_pos, 10)
-    screen.blit(snake_image, player_pos)
+    pygame.draw.circle(screen, "green", player_pos, 15)
+
+
     # Create a text surface
     text_surface = banner_font.render(f'Score: {score}', True, (255, 255, 255))  # White color
     screen.blit(text_surface, (screen.get_width() / 2 - text_surface.get_width() / 2, 0))
@@ -44,7 +45,7 @@ while running:
         player_pos.x += 200 * dt
 
 
-    if player_pos.distance_to(apple_pos) < 10:
+    if player_pos.distance_to(apple_pos) < 25:
         score += 1
         apple_x = random.randint(10, screen.get_width())
         apple_y = random.randint(10, screen.get_height())
