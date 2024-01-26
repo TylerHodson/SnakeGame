@@ -4,7 +4,11 @@ import random
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+
+grid_size = 50
+grids_xy = 10
+
+screen = pygame.display.set_mode(((grid_size * grids_xy), (grid_size * grids_xy)))
 clock = pygame.time.Clock()
 running = True
 dt = 0
@@ -36,13 +40,13 @@ while running:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        player_pos.y -= 200 * dt
+        player_pos.y -= 1 * grid_size
     if keys[pygame.K_s]:
-        player_pos.y += 200 * dt
+        player_pos.y += 1 * grid_size
     if keys[pygame.K_a]:
-        player_pos.x -= 200 * dt
+        player_pos.x -= 1 * grid_size
     if keys[pygame.K_d]:
-        player_pos.x += 200 * dt
+        player_pos.x += 1 * grid_size
 
 
     if player_pos.distance_to(apple_pos) < 25:
@@ -56,6 +60,6 @@ while running:
     # limits FPS to 60
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(10) / 1000
 
 pygame.quit()
